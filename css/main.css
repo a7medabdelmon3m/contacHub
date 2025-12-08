@@ -1,0 +1,257 @@
+@font-face {
+  font-family: "Inter";
+  src: url(../fonts/inter/Inter/Inter-VariableFont_opsz\wght.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  text-transform: capitalize;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+body {
+  color: #4a5565;
+}
+:root {
+  --main-color: #742bfc;
+  --margin12: 12px;
+  --margin32: 32px;
+  --fs14: 0.875rem;
+  --lh20: 20px;
+}
+.bg-main {
+  background-color: var(--main-color) !important;
+}
+
+.bg-main-subtle {
+  background-color: #742bfc3f !important;
+}
+.txt-main {
+  color: var(--main-color) !important;
+}
+.fs14 {
+  font-size: var(--fs14) !important;
+}
+.lh20 {
+  line-height: var(--lh20) !important;
+}
+.m-12 {
+  margin: var(--margin12) !important;
+}
+.mt-12 {
+  margin-top: var(--margin12) !important;
+}
+.mb-12 {
+  margin-bottom: var(--margin12) !important;
+}
+.me-12 {
+  margin-right: var(--margin12) !important;
+}
+.ms-12 {
+  margin-left: var(--margin12) !important;
+}
+.m-32 {
+  margin: var(--margin32) !important;
+}
+.mt-32 {
+  margin-top: var(--margin32) !important;
+}
+.mb-32 {
+  margin-bottom: var(--margin32) !important;
+}
+.me-32 {
+  margin-right: var(--margin32) !important;
+}
+.ms-32 {
+  margin-left: var(--margin32) !important;
+}
+header nav .image,
+nav button:not(:first-child) {
+  width: 40px;
+  height: 40px;
+  transition: all 0.5s;
+}
+header nav button:not(:first-child):hover {
+  background-color: #4a556544 !important;
+}
+.icon {
+  width: 44px;
+  height: 44px;
+}
+.navbar-brand h1 {
+  font-size: 24px;
+  line-height: 32px;
+}
+.navbar-brand p {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+header nav button:first-child {
+  padding: 10px 20px;
+  transition: all 0.5s;
+}
+header nav button:first-child:hover {
+  box-shadow: 0 5px 10px 0 #5f34f978;
+  transform: translateY(-2px);
+}
+main {
+  background-color: #f8fafc;
+}
+main .container-xxl {
+  padding: 32px;
+}
+.statistics .inner {
+  padding: 20px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.115);
+  transition: all 0.5s;
+
+  p:first-child {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  p:last-child {
+    font-size: 24px;
+    line-height: 32px;
+  }
+}
+.statistics .inner:hover {
+  box-shadow: 0 7px 10px 0 rgba(0, 0, 0, 0.269);
+}
+.results input {
+  padding: 12px 16px;
+}
+.results .search div {
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1;
+  width: 44px;
+  padding-left: 16px;
+}
+.results .right .inner .item {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.116);
+  .details {
+    min-width: 0;
+  }
+  .item-header .icon {
+    width: 36px;
+    height: 36px;
+  }
+  .item-body .icon:first-child {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    min-width: 40px;
+  }
+  .item-body .icon:last-child {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+  
+}
+.fs11-lh16 {
+  font-size: 11px;
+  line-height: 16px;
+}
+.fs12-lh16 {
+  font-size: 12px;
+  line-height: 16px;
+}
+.results .right .inner {
+  top: 100px;
+}
+.contact-item .inner {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.116);
+}
+.contact-item .icon {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  min-height: 56px;
+}
+.phone-icon {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  cursor: pointer;
+}
+.contact-body {
+  .ele-icon {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    cursor: pointer;
+  }
+}
+.results .all-contact .contact-footer {
+  background-color: #9696961b;
+}
+.results .all-contact .contact-footer .footer-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.profile-icon{
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+}
+.full-name span ,
+.phone span ,
+.email span{
+  font-size: 12px;
+  line-height: 16px;
+}
+.footer-icon:hover{
+  background-color: rgba(128, 128, 128, 0.105) !important;
+}
+.favo-icon:hover {
+  color: gold !important;
+}
+
+.emer-icon:hover{
+  color: #DC3545 !important;
+}
+
+.emer-sign,
+.Favo-sign{
+  width: 20px;
+  height: 20px;
+  max-width: 20px;
+  max-width: 20px;
+  right: -5px;
+}
+.emer-sign{
+  bottom: -5px;
+}
+.Favo-sign{
+top: -5px;
+}
+.m-icon{
+  width: 80px;
+  height: 80px;
+  max-width: 80px;
+  max-width: 80px;
+}
+.message{
+  padding: 80px 0;
+}

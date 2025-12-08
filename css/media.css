@@ -1,0 +1,11 @@
+@media (max-width:640px) {
+    header nav button:not(:first-child) ,
+    header nav button:first-child span{
+        display: none !important;
+    }
+    
+    
+}
+.modal-body .profile label{
+    background-color: rgba(141, 141, 141, 0.349);
+}
