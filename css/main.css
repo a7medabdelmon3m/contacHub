@@ -174,7 +174,9 @@ main .container-xxl {
   top: 100px;
 }
 .contact-item .inner {
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.116);
+   min-height: 284px !important;
+  transition: all 0.2s;
+  border: #7b7b7b10 solid 3px;
 }
 .contact-item .icon {
   width: 56px;
@@ -208,6 +210,9 @@ main .container-xxl {
   min-height: 36px;
   cursor: pointer;
   transition: all 0.5s;
+}
+.contact-item .inner:hover{
+  box-shadow: 0px 10px 10px 0 rgba(0, 0, 0, 0.148) ;
 }
 .profile-icon{
   width: 80px;
@@ -261,4 +266,12 @@ top: -5px;
 }
 .my-confirm-btn:focus{
   box-shadow: none !important;
+}
+.update-btn:hover{
+  color: #742bfc;
+  background-color: #742bfc46 !important;
+}
+.delete-btn:hover{
+  color: #DC2626;
+  background-color: #dc262639 !important;
 }

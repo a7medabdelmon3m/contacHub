@@ -120,7 +120,8 @@ function display(items) {
     var hideGroup = items[i].group.trim() === "" ? "d-none" : "";
     box += `
             <div class="contact-item col-12 col-md-6 bg-transparent">
-                  <div class="inner overflow-hidden rounded-4">
+                  <div class="inner d-flex flex-column justify-content-between overflow-hidden rounded-4">
+                  <div>
                     <div class="head d-flex align-items-center gap-2 p-3">
                       <div
                         class="icon position-relative rounded-3 bg-success d-flex align-items-center justify-content-center text-white"
@@ -184,6 +185,7 @@ function display(items) {
                         <i class = "fa-solid fa-heart-pulse text-danger"></i> Emergancey
                       </span>
                     </div>
+                    </div>
                     <div
                       class="contact-footer d-flex justify-content-between p-3"
                     >
@@ -223,6 +225,7 @@ function display(items) {
                           }"></i>
                         </div>
                         <div
+                        
                          onclick="setupFormToUpdate(${i})"
                           class="footer-icon update-btn rounded-3 d-flex align-items-center justify-content-center"
                         >
@@ -230,7 +233,7 @@ function display(items) {
                         </div>
                         <div
                         onclick="deleteConfirmation(${i})"
-                          class="footer-icon rounded-3 d-flex align-items-center justify-content-center"
+                          class="footer-icon delete-btn rounded-3 d-flex align-items-center justify-content-center"
                         >
                           <i class="fa-solid fa-trash"></i>
                         </div>
@@ -386,11 +389,12 @@ function createFavoriteOrEmergancy(contacts) {
                         </p>
                         <p class="fs12-lh16">${contacts[i].phone}</p>
                       </div>
-                      <div
-                        class="icon rounded-3 bg-success-subtle d-flex align-items-center justify-content-center text-success ms-auto"
+                      <a
+                      href ="tel:${contacts[i].phone}"
+                        class=" text-decoration-none icon rounded-3 bg-success-subtle d-flex align-items-center justify-content-center text-success ms-auto"
                       >
                         <i class="fa-solid fa-phone"></i>
-                      </div>
+                      </a>
                     </div>
                       
                     </div>
@@ -413,11 +417,12 @@ function createFavoriteOrEmergancy(contacts) {
                         </p>
                         <p class="fs12-lh16">${contacts[i].phone}</p>
                       </div>
-                      <div
-                        class="icon rounded-3 bg-danger-subtle d-flex align-items-center justify-content-center text-danger ms-auto"
+                      <a
+                      href ="tel:${contacts[i].phone}"
+                        class=" text-decoration-none icon rounded-3 bg-danger-subtle d-flex align-items-center justify-content-center text-danger ms-auto"
                       >
                         <i class="fa-solid fa-phone"></i>
-                      </div>
+                      </a>
                     </div>
                       
                     </div>
