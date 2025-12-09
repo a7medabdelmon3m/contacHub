@@ -34,7 +34,7 @@ var emergenceyEmptyMessage = `
 var favoriteEmptyMessage = `
                     <div id="empty-favo" class="py-4 d-flex justify-content-center opacity-25"> No favorites yet</div>
 `;
-var contactEmptyMessage= `
+var contactEmptyMessage = `
   <div id="empty-message" class="message opacity-50 d-flex flex-column align-items-center justify-content-center ">
                 <div class="m-icon d-flex align-items-center justify-content-center bg-secondary-subtle rounded-3 ">
                   <i class="fa-solid fa-contact-book fs-1 opacity-50"></i>
@@ -43,7 +43,7 @@ var contactEmptyMessage= `
                 <p class="fw-bold fs-4">No contacts found</p>
                   <p class="fw-lighter fs-4">Click "Add Contact" to get started</p>
               </div>
-` ;
+`;
 
 var key = "data";
 var contacts = [];
@@ -51,13 +51,12 @@ var contacts = [];
 if (localStorage.getItem(key) !== null) {
   contacts = JSON.parse(localStorage.getItem(key));
   display(contacts);
-  calcTotalContacts();
 }
 
 // ================ call of showEmptyMessage to check after reload =================
-showEmptyMessage(contactEmptyMessage , allContacts) ;
-showEmptyMessage(favoriteEmptyMessage , favoContainer) ;
-showEmptyMessage(emergenceyEmptyMessage , emerContainer) ;
+showEmptyMessage(contactEmptyMessage, allContacts);
+showEmptyMessage(favoriteEmptyMessage, favoContainer);
+showEmptyMessage(emergenceyEmptyMessage, emerContainer);
 
 // ==================== add new contacts event ======================
 var Contact;
@@ -79,8 +78,8 @@ saveCon.addEventListener("click", function () {
       return;
     }
   }
-  if(validationOfDublicatedsPhones(phoneInput)){
-    return ;
+  if (validationOfDublicatedsPhones(phoneInput)) {
+    return;
   }
 
   contacts.push(Contact);
@@ -99,15 +98,17 @@ saveCon.addEventListener("click", function () {
   calcTotalContacts();
 });
 var totalFavo = 0,
-     totalEmer = 0;
+  totalEmer = 0;
+var idxToUpdate = null;
+var idxToDeleted = null;
 //============= display function ===========
-var idxToUpdate = null  ;
+
 function display(items) {
   var box = "";
   var totalFavo = 0,
-     totalEmer = 0;
+    totalEmer = 0;
   for (var i = 0; i < items.length; i++) {
-     idxToUpdate = i ;
+    idxToUpdate = i;
     if (items[i].favorite) {
       totalFavo++;
     }
@@ -228,6 +229,7 @@ function display(items) {
                           <i class="fa-solid fa-pen"></i>
                         </div>
                         <div
+                        onclick="deleteConfirmation(${i})"
                           class="footer-icon rounded-3 d-flex align-items-center justify-content-center"
                         >
                           <i class="fa-solid fa-trash"></i>
@@ -239,14 +241,12 @@ function display(items) {
         `;
   }
   allContacts.innerHTML = box;
-  showEmptyMessage(contactEmptyMessage , allContacts) ;
+  showEmptyMessage(contactEmptyMessage, allContacts);
   totalFavorites.innerHTML = totalFavo;
   totalEmerganceys.innerHTML = totalEmer;
   addFavoriteOrEmergancy();
   createFavoriteOrEmergancy(contacts);
-  
-  
-  
+  calcTotalContacts();
 }
 // ==========validation function =============
 var inputPattern = {
@@ -318,26 +318,25 @@ function Validation(input) {
       });
       return false;
     }
-    
+
     return true;
   }
 }
-function validationOfDublicatedsPhones(phoneInput){
-  
-      for (var i = 0; i < contacts.length; i++) {
-        if (phoneInput.value === contacts[i].phone) {
-          Swal.fire({
-            title: "Duplicate Phone Number",
-            icon: "error",
-            text:
-              "A contact with this phone number already exists: " +
-              contacts[i].fullName,
-            draggable: true,
-          });
-          return true;
-        }
-      }
-      return false  ;  
+function validationOfDublicatedsPhones(phoneInput) {
+  for (var i = 0; i < contacts.length; i++) {
+    if (phoneInput.value === contacts[i].phone) {
+      Swal.fire({
+        title: "Duplicate Phone Number",
+        icon: "error",
+        text:
+          "A contact with this phone number already exists: " +
+          contacts[i].fullName,
+        draggable: true,
+      });
+      return true;
+    }
+  }
+  return false;
 }
 function clearInputs() {
   proImgInput.value = "";
@@ -425,12 +424,10 @@ function createFavoriteOrEmergancy(contacts) {
       `;
     }
   }
-   favoContainer.innerHTML = favoBox;
-   emerContainer.innerHTML = emerBox;
-   showEmptyMessage(favoriteEmptyMessage , favoContainer) ;
-   showEmptyMessage(emergenceyEmptyMessage , emerContainer) ;
-
-  
+  favoContainer.innerHTML = favoBox;
+  emerContainer.innerHTML = emerBox;
+  showEmptyMessage(favoriteEmptyMessage, favoContainer);
+  showEmptyMessage(emergenceyEmptyMessage, emerContainer);
 }
 
 function addFavoriteOrEmergancy() {
@@ -470,7 +467,6 @@ function search(contacts) {
   for (var i = 0; i < contacts.length; i++) {
     term = contacts[i].fullName + contacts[i].phone + contacts[i].email;
     term = term.toString().trim().toLowerCase();
-    
 
     if (term.includes(searchWord)) {
       searchedItems.push(contacts[i]);
@@ -483,62 +479,60 @@ searchInput.addEventListener("input", function () {
   search(contacts);
 });
 
-function showEmptyMessage(message , place ){
-  if(place.innerHTML.trim() === ""){
-    place.innerHTML = message ;
+function showEmptyMessage(message, place) {
+  if (place.innerHTML.trim() === "") {
+    place.innerHTML = message;
   }
-
 }
 
 // =================== update contaccts=====================
 
-function setupFormToUpdate(idx){
-  idxToUpdate = idx ; 
-  addBtn.click();  // this statement to show modal form
-  updateCon.classList.remove("d-none") ;
-  saveCon.classList.add("d-none") ;
-   fullNameInput.value = contacts[idx].fullName ;
-   phoneInput.value = contacts[idx].phone ;
-   emailAddressInput.value = contacts[idx].email ;
-   addressInput.value = contacts[idx].address ;
-   groupInput.value = contacts[idx].group ;
-   noteInput.value = contacts[idx].note ;
-   favoInput.checked = contacts[idx].favorite ;
-   emerInput.checked = contacts[idx].emergencey ;
-  
+function setupFormToUpdate(idx) {
+  idxToUpdate = idx;
+  addBtn.click(); // this statement to show modal form
+  updateCon.classList.remove("d-none");
+  saveCon.classList.add("d-none");
+  fullNameInput.value = contacts[idx].fullName;
+  phoneInput.value = contacts[idx].phone;
+  emailAddressInput.value = contacts[idx].email;
+  addressInput.value = contacts[idx].address;
+  groupInput.value = contacts[idx].group;
+  noteInput.value = contacts[idx].note;
+  favoInput.checked = contacts[idx].favorite;
+  emerInput.checked = contacts[idx].emergencey;
 }
 
+function update(idxToUpdate) {
+  console.log(idxToUpdate);
 
-function update(idxToUpdate){
-  console.log(idxToUpdate) ;
-
-for (var i = 0; i < inputsToValidate.length; i++) {
+  for (var i = 0; i < inputsToValidate.length; i++) {
     if (!Validation(inputsToValidate[i])) {
-      
       return;
     }
   }
-  if(validationOfDublicatedsPhones(phoneInput) && phoneInput.value !== contacts[idxToUpdate].phone ){
-
-    return  ;
+  if (
+    validationOfDublicatedsPhones(phoneInput) &&
+    phoneInput.value !== contacts[idxToUpdate].phone
+  ) {
+    return;
   }
- var contactToUpdate = contacts[idxToUpdate] ;
-contactToUpdate.fullName = fullNameInput.value ;
-contactToUpdate.phone = phoneInput.value ;
-contactToUpdate.email = emailAddressInput.value ;
-contactToUpdate.address = addressInput.value ;
-contactToUpdate.group = groupInput.value ;
-contactToUpdate.note = noteInput.value ;
-contactToUpdate.favorite = favoInput.checked ;
-contactToUpdate.emergencey = emerInput.checked ;
+  var contactToUpdate = contacts[idxToUpdate];
+  contactToUpdate.fullName = fullNameInput.value;
+  contactToUpdate.phone = phoneInput.value;
+  contactToUpdate.email = emailAddressInput.value;
+  contactToUpdate.address = addressInput.value;
+  contactToUpdate.group = groupInput.value;
+  contactToUpdate.note = noteInput.value;
+  contactToUpdate.favorite = favoInput.checked;
+  contactToUpdate.emergencey = emerInput.checked;
 
-localStorage.setItem(key , JSON.stringify(contacts)) ;
-display(contacts) ;
-clearInputs() ;
-updateCon.classList.add("d-none") ;
-saveCon.classList.remove("d-none") ;
-addBtn.click();
-Swal.fire({
+  localStorage.setItem(key, JSON.stringify(contacts));
+  display(contacts);
+  clearInputs();
+  updateCon.classList.add("d-none");
+  saveCon.classList.remove("d-none");
+  addBtn.click();
+  Swal.fire({
     title: "Updated!",
     icon: "success",
     text: "Contact has been updated successfully..",
@@ -547,23 +541,49 @@ Swal.fire({
     showConfirmButton: false,
   });
 }
- updateCon.addEventListener( "click" ,  function(){
-   update(idxToUpdate) ; 
-   }) ;
-   modal.addEventListener( "click" ,  function(e){
-    if(e.target.classList.contains("clear"))
-    {
-      updateCon.classList.add("d-none") ;
-      saveCon.classList.remove("d-none") ;
-      clearInputs() ;
+updateCon.addEventListener("click", function () {
+  update(idxToUpdate);
+});
+modal.addEventListener("click", function (e) {
+  if (e.target.classList.contains("clear")) {
+    updateCon.classList.add("d-none");
+    saveCon.classList.remove("d-none");
+    clearInputs();
+  }
+});
+//  =========== function to delete contact =============
+
+function deleteConfirmation(idx) {
+  idxToDeleted = idx;
+  Swal.fire({
+    title: "Are you sure?",
+    text: "Are you sure you want to delete ahmed moneim? This action cannot be undone.",
+    icon: "warning",
+    showCancelButton: true,
+    customClass: {
+      confirmButton: "my-confirm-btn",
+    },
+    cancelButtonColor: "rgba(85, 85, 85, 1)",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      deleteContact(idxToDeleted);
+      Swal.fire({
+        title: "Deleted!",
+        text: "Contact has been deleted.",
+        icon: "success",
+        draggable: true,
+        timer: 1000,
+        showConfirmButton: false,
+      });
     }
-    
+  });
+}
 
-   }) ;
+function deleteContact(idx) {
+  // console.log(idx) ;
 
-
-
-
-
-
-
+  contacts.splice(idx, 1);
+  localStorage.setItem(key, JSON.stringify(contacts));
+  display(contacts);
+}

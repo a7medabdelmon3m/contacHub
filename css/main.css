@@ -255,3 +255,10 @@ top: -5px;
 .message{
   padding: 80px 0;
 }
+.my-confirm-btn{
+  background-color: #DC2626 !important;
+  
+}
+.my-confirm-btn:focus{
+  box-shadow: none !important;
+}
