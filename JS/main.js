@@ -1,8 +1,4 @@
-// Swal.fire({
-//   title: "Drag me!",
-//   icon: "success",
-//   draggable: true
-// });
+
 var proImgInput = document.querySelector("#profile-img");
 var fullNameInput = document.querySelector("#full_n");
 var phoneInput = document.querySelector("#phone");
@@ -91,14 +87,11 @@ saveCon.addEventListener("click", function () {
     title: "Added!",
     icon: "success",
     text: "contact has been added successfully.",
-    draggable: true,
     timer: 1000,
     showConfirmButton: false,
   });
   calcTotalContacts();
 });
-var totalFavo = 0,
-  totalEmer = 0;
 var idxToUpdate = null;
 var idxToDeleted = null;
 //============= display function ===========
@@ -108,7 +101,7 @@ function display(items) {
   var totalFavo = 0,
     totalEmer = 0;
   for (var i = 0; i < items.length; i++) {
-    idxToUpdate = i;
+    // idxToUpdate = i;
     if (items[i].favorite) {
       totalFavo++;
     }
@@ -135,7 +128,7 @@ function display(items) {
                         <div class="Favo-sign position-absolute rounded-circle ${
                           items[i].favorite ? "d-flex" : "d-none"
                         } align-items-center justify-content-center bg-warning text-white border border-2 border-white">
-                          <i class="fa-solid fa-heart-pulse fa-2xs "></i>
+                          <i class="fa-solid fa-star fa-2xs "></i>
                         </div>
 
                       </div>
@@ -179,7 +172,7 @@ function display(items) {
                       </span>
                       <span
                         class="  ${
-                          items[i].emergencey ? "d--nline-block" : "d-none"
+                          items[i].emergencey ? "" : "d-none"
                         } fs11-lh16 px-2 py-1 text-danger bg-danger-subtle mt-12 rounded-3 d-inline-block"
                       >
                         <i class = "fa-solid fa-heart-pulse text-danger"></i> Emergancey
@@ -277,7 +270,7 @@ var inputPattern = {
     },
   },
   email: {
-    patternName: /^$|^[a-zA-Z0-9._]+@gmail.com$/,
+    patternName: /^$|^[a-zA-Z0-9._]+(@gmail.com){1}$/,
     invalidMessage: {
       iTitle: "Invalid email",
       theMessage: "Please enter a valid email address",
@@ -300,6 +293,7 @@ function validate(input) {
 
 // ========== function  to validate empty or not ============
 function Validation(input) {
+   // empty inputs
   if (input.value.trim() === "" && input.id !== "email") {
     Swal.fire({
       title: inputPattern[input.id].emptyMessage.mTitle,
@@ -308,7 +302,9 @@ function Validation(input) {
       draggable: true,
     });
     return false;
-  } else {
+  }
+  // not empty inputs 
+  else {
     var val = input.value;
     var pattern = inputPattern[input.id].patternName;
     var isMatch = pattern.test(val);
@@ -508,17 +504,14 @@ function setupFormToUpdate(idx) {
 }
 
 function update(idxToUpdate) {
-  console.log(idxToUpdate);
+  // console.log(idxToUpdate);
 
   for (var i = 0; i < inputsToValidate.length; i++) {
     if (!Validation(inputsToValidate[i])) {
       return;
     }
   }
-  if (
-    validationOfDublicatedsPhones(phoneInput) &&
-    phoneInput.value !== contacts[idxToUpdate].phone
-  ) {
+  if (validationOfDublicatedsPhones(phoneInput) && phoneInput.value !== contacts[idxToUpdate].phone) {
     return;
   }
   var contactToUpdate = contacts[idxToUpdate];
@@ -549,6 +542,7 @@ function update(idxToUpdate) {
 updateCon.addEventListener("click", function () {
   update(idxToUpdate);
 });
+
 modal.addEventListener("click", function (e) {
   if (e.target.classList.contains("clear")) {
     updateCon.classList.add("d-none");
@@ -572,7 +566,7 @@ function deleteConfirmation(idx) {
     confirmButtonText: "Yes, delete it!",
   }).then((result) => {
     if (result.isConfirmed) {
-      deleteContact(idxToDeleted);
+      deleteContact(idxToDeleted); // call function to delete contact 
       Swal.fire({
         title: "Deleted!",
         text: "Contact has been deleted.",
