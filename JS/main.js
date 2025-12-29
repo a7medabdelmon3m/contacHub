@@ -52,10 +52,6 @@ const profileColors = [
   "#5C6BC0", // indigo
   "#66BB6A"  // soft green
 ];
-var keyColor = "colors";
-localStorage.setItem(keyColor , JSON.stringify(profileColors)) ; 
-const randomColor =
-  profileColors[Math.floor(Math.random() * profileColors.length)];
 
 function getRandomProfileColor() {
   
@@ -109,6 +105,7 @@ saveCon.addEventListener("click", function () {
       for(let i = 0 ;i < contacts.length; i++ ){
     if(contacts[i].fullName === Contact.fullName){
       Contact.color = contacts[i].color ; 
+      break ;
   }
   }
   }
