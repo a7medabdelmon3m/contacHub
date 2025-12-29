@@ -58,6 +58,7 @@ const randomColor =
   profileColors[Math.floor(Math.random() * profileColors.length)];
 
 function getRandomProfileColor() {
+  
   return profileColors[
     Math.floor(Math.random() * profileColors.length)
   ];
@@ -71,6 +72,7 @@ if (localStorage.getItem(key) !== null) {
   contacts = JSON.parse(localStorage.getItem(key));
   display(contacts);
 }
+
 
 // ================ call of showEmptyMessage to check after reload =================
 showEmptyMessage(contactEmptyMessage, allContacts);
@@ -101,6 +103,14 @@ saveCon.addEventListener("click", function () {
   if (validationOfDublicatedsPhones(phoneInput)) {
     return;
   }
+  if(contacts.length >= 1 )
+  {
+      for(let i = 0 ;i < contacts.length; i++ ){
+    if(contacts[i].fullName === Contact.fullName){
+      Contact.color = contacts[i].color ; 
+  }
+  }
+  
 
   contacts.push(Contact);
   localStorage.setItem(key, JSON.stringify(contacts));
