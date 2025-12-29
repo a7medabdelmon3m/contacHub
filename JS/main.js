@@ -57,6 +57,13 @@ localStorage.setItem(keyColor , JSON.stringify(profileColors)) ;
 const randomColor =
   profileColors[Math.floor(Math.random() * profileColors.length)];
 
+function getRandomProfileColor() {
+  return profileColors[
+    Math.floor(Math.random() * profileColors.length)
+  ];
+}
+
+
 var key = "data";
 var contacts = [];
 // ========== craete localstorage ===========
@@ -83,6 +90,7 @@ saveCon.addEventListener("click", function () {
     note: noteInput.value,
     favorite: favoInput.checked,
     emergencey: emerInput.checked,
+     color: getRandomProfileColor(),
   };
 
   for (var i = 0; i < inputsToValidate.length; i++) {
@@ -133,7 +141,7 @@ function display(items) {
                   <div>
                     <div class="head d-flex align-items-center gap-2 p-3">
                       <div
-                      style = "background-color:${randomColor}"
+                     style="background-color:${items[i].color}"
                         class="icon position-relative rounded-3  d-flex align-items-center justify-content-center text-white"
                       >
                         <p>${assignAbbreviation(items[i].fullName)}</p>
