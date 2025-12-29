@@ -40,6 +40,22 @@ var contactEmptyMessage = `
                   <p class="fw-lighter fs-4">Click "Add Contact" to get started</p>
               </div>
 `;
+const profileColors = [
+  "#40C4FF", // light blue
+  "#FFD54F", // yellow
+  "#FF5252", // red
+  "#69F0AE", // green
+  "#7C4DFF", // purple
+  "#FF6E40", // orange
+  "#26A69A", // teal
+  "#EC407A", // pink
+  "#5C6BC0", // indigo
+  "#66BB6A"  // soft green
+];
+var keyColor = "colors";
+localstorage.setItem(keyColor , JSON.stringify(profileColors)) ; 
+const randomColor =
+  profileColors[Math.floor(Math.random() * profileColors.length)];
 
 var key = "data";
 var contacts = [];
@@ -117,7 +133,8 @@ function display(items) {
                   <div>
                     <div class="head d-flex align-items-center gap-2 p-3">
                       <div
-                        class="icon position-relative rounded-3 bg-success d-flex align-items-center justify-content-center text-white"
+                      style = "background-color:${randomColor}"
+                        class="icon position-relative rounded-3  d-flex align-items-center justify-content-center text-white"
                       >
                         <p>${assignAbbreviation(items[i].fullName)}</p>
                         <div class="emer-sign position-absolute rounded-circle ${
@@ -586,3 +603,4 @@ function deleteContact(idx) {
   localStorage.setItem(key, JSON.stringify(contacts));
   display(contacts);
 }
+
