@@ -103,11 +103,13 @@ saveCon.addEventListener("click", function () {
   if (validationOfDublicatedsPhones(phoneInput)) {
     return;
   }
+  
   if(contacts.length >= 1 )
   {
       for(let i = 0 ;i < contacts.length; i++ ){
     if(contacts[i].fullName === Contact.fullName){
       Contact.color = contacts[i].color ; 
+  }
   }
   }
   
