@@ -400,7 +400,8 @@ function createFavoriteOrEmergancy(contacts) {
                     >
                     <div class="inner d-flex align-items-center gap-2 rounded-3 p-2  border">
                       <div
-                        class="icon rounded-3 bg-success d-flex align-items-center justify-content-center text-white"
+                      style="background-color:${contacts[i].color}"
+                        class="icon rounded-3  d-flex align-items-center justify-content-center text-white"
                       >
                         <p>${assignAbbreviation(contacts[i].fullName)}</p>
                       </div>
@@ -428,7 +429,8 @@ function createFavoriteOrEmergancy(contacts) {
                     >
                     <div class="inner d-flex align-items-center gap-2 rounded-3 p-2  border">
                       <div
-                        class="icon rounded-3 bg-success d-flex align-items-center justify-content-center text-white"
+                       style="background-color:${contacts[i].color}"
+                        class="icon rounded-3  d-flex align-items-center justify-content-center text-white"
                       >
                         <p>${assignAbbreviation(contacts[i].fullName)}</p>
                       </div>
