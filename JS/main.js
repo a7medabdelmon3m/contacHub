@@ -53,7 +53,7 @@ const profileColors = [
   "#66BB6A"  // soft green
 ];
 var keyColor = "colors";
-localstorage.setItem(keyColor , JSON.stringify(profileColors)) ; 
+localStorage.setItem(keyColor , JSON.stringify(profileColors)) ; 
 const randomColor =
   profileColors[Math.floor(Math.random() * profileColors.length)];
 
